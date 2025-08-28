@@ -20,8 +20,8 @@ resource "null_resource" "s3_backup_and_cleanup" {
   provisioner "local-exec" {
     command = <<EOT
       mkdir -p /opt/s3-backup
-      aws s3 cp s3://devops-bck-2490 /opt/s3-backup/ --recursive
-      aws s3 rm s3://devops-bck-2490 --recursive
+      aws s3 cp s3://devops-bck-2490/text.txt /opt/s3-backup/ --recursive
+      aws s3 rm s3://devops-bck-2490/text.txt --recursive
     EOT
   }
 }
