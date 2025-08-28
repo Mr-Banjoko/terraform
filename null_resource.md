@@ -15,13 +15,13 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# Step 1 & 2: Copy contents from an s3 bucket and delete the object
+# Step 1 & 2: Copy contents from an s3 bucket and empty the bucket
 resource "null_resource" "s3_backup_and_cleanup" {
   provisioner "local-exec" {
     command = <<EOT
       mkdir -p /opt/s3-backup
-      aws s3 cp s3://devops-bck-2490/text.txt /opt/s3-backup/ --recursive
-      aws s3 rm s3://devops-bck-2490/text.txt --recursive
+      aws s3 cp s3://devops-bck-2490 /opt/s3-backup/ --recursive
+      aws s3 rm s3://devops-bck-2490 --recursive
     EOT
   }
 }
