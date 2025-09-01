@@ -44,8 +44,10 @@ resource "null_resource" "s3_backup_and_cleanup" {
     command = "aws s3 sync s3://${aws_s3_bucket.wordpress_bucket.bucket} s3://${aws_s3_bucket.nautilus_sync_bucket.bucket}"
   }
   depends_on = [
+    aws_s3_bucket.new_bucket,
+    aws_s3_bucket_acl.new_bucket_acl,
     aws_s3_bucket.wordpress_bucket,
-    aws_s3_bucket.nautilus_sync_bucket
+    aws_s3_bucket_acl.wordpress_bucket_acl
   ]
 }
 
